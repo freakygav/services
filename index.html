@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreakyGav's Services</title>
+    <style>
+        :root {
+            --primary: #9D4EDD;  
+            --secondary: #7B2CBF; 
+            --accent: #FF9E00;   
+            --light-bg: #F8F9FA;  
+            --card-bg: #FFFFFF;
+            --text-dark: #212529;
+            --text-light: #6C757D;
+        }
+
+        body.dark {
+            --light-bg: #121212;
+            --card-bg: #1E1E1E;
+            --text-dark: #F8F9FA;
+            --text-light: #ADB5BD;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .bubble {
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .blob {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            opacity: 0.1;
+            filter: blur(60px);
+            z-index: -1;
+            border-radius: 50%;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(50px, -30px); }
+        }
+
+        header {
+            padding: 2rem 5%;
+            text-align: center;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .dark-toggle-button {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: var(--card-bg);
+            color: var(--text-dark);
+            border: none;
+            padding: 0.6rem 1rem;
+            font-size: 1.2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+            z-index: 10;
+        }
+
+        body.dark .dark-toggle-button {
+            background: var(--card-bg);
+            color: var(--text-dark);
+        }
+
+        .hero {
+            padding: 8rem 10%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: var(--text-light);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 3rem 10%;
+            text-align: center;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: var(--card-bg);
+            padding: 2rem;
+            min-width: 200px;
+            transition: transform 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-8px);
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .services {
+            padding: 5rem 10%;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-item {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            transition: all 0.3s;
+        }
+
+        .service-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-item h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing {
+            padding: 5rem 10%;
+            background: linear-gradient(135deg, #F8F9FA, #E9ECEF);
+            text-align: center;
+        }
+
+        body.dark .pricing {
+            background: linear-gradient(135deg, #1A1A1A, #2A2A2A);
+        }
+
+        .pricing h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .price-option {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            transition: all 0.3s;
+        }
+
+        .price-option.popular {
+            border: 3px solid var(--accent);
+            position: relative;
+        }
+
+        .price-option.popular::before {
+            content: "POPULAR";
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .price-option:hover {
+            transform: scale(1.05);
+        }
+
+        .price-option h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 1.5rem 0;
+            color: var(--secondary);
+        }
+
+        .contact {
+            padding: 8rem 10%;
+            text-align: center;
+            position: relative;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .blob-1 {
+            top: 20%;
+            left: 10%;
+            width: 400px;
+            height: 400px;
+            animation-delay: 0s;
+        }
+
+        .blob-2 {
+            bottom: 30%;
+            right: 10%;
+            width: 350px;
+            height: 350px;
+            animation-delay: 3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <header>
+        <div class="logo bubble">FreakyGav's<span> BOTs</span></div>
+        <button id="darkModeToggle" class="dark-toggle-button bubble">🌓</button>
+    </header>
+
+    <section class="hero">
+        <h1>Discord Bots That Don't Fucking Suck</h1>
+        <p>I build Python bots with clean code and zero bullshit. Your server deserves better than those trash public bots everyone else uses.</p>
+    </section>
+
+    <section class="stats">
+        <div class="stat-item bubble">
+            <h3>15+</h3>
+            <p>Bots Built</p>
+        </div>
+        <div class="stat-item bubble">
+            <h3>4.9★</h3>
+            <p>Average Rating (not bullshitting)</p>
+        </div>
+        <div class="stat-item bubble">
+            <h3>0</h3>
+            <p>Fucks Given About "Industry Standards"</p>
+        </div>
+    </section>
+
+    <section class="services">
+        <h2>What My Bots Can Do For You</h2>
+        <div class="service-grid">
+            <div class="service-item bubble">
+                <h3>Moderation That Doesn't Suck</h3>
+                <p>Auto-ban those annoying spammers before you even notice them. Warning systems that actually work. I'll set it up so you don't have to babysit your server.</p>
+            </div>
+            <div class="service-item bubble">
+                <h3>Fun Commands That Aren't Lame</h3>
+                <p>Custom games, meme generators, currency systems - make your server actually fun to hang out in instead of just another text box.</p>
+            </div>
+            <div class="service-item bubble">
+                <h3>Automation That Works</h3>
+                <p>Auto-roles, welcome messages, scheduled posts - I'll make the boring stuff happen automatically so you can focus on your community.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing">
+        <h2>Simple Pricing - No Bullshit</h2>
+        <div class="pricing-grid">
+            <div class="price-option bubble">
+                <h3>Basic</h3>
+                <div class="price">$5</div>
+                <p>1-2 simple commands</p>
+                <p>Basic responses</p>
+                <p>"Hey bot, say hello" tier</p>
+            </div>
+            <div class="price-option bubble popular">
+                <h3>Popular</h3>
+                <div class="price">$15</div>
+                <p>5+ custom commands</p>
+                <p>Auto-moderation</p>
+                <p>Fun stuff (memes, games)</p>
+            </div>
+            <div class="price-option bubble">
+                <h3>Custom</h3>
+                <div class="price">$25+</div>
+                <p>Complex bots</p>
+                <p>API connections</p>
+                <p>"How tf did you do that?!" tier</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="contact-card bubble">
+            <h2>Ready to Get Your <span class="highlight">Badass Bot</span>?</h2>
+            <p>Hit me up on Discord: <span class="highlight">freakygav</span></p>
+            <p>Or email: <span class="highlight">huzzwant@gmail.com</span></p>
+            <p>Tell me what you need. I'll reply with:</p>
+            <p>✅ A yes/no if I can do it</p>
+            <p>✅ Exact price (no surprises)</p>
+            <p>✅ How long it'll take</p>
+        </div>
+    </section>
+
+    <script>
+        const toggleBtn = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark');
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            if (body.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+</body>
+</html>
