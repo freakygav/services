@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FreakyGav's Bots & Community</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>FreakyGav's Services</title>
     <style>
         :root {
             --primary: #9D4EDD;  
@@ -16,6 +15,13 @@
             --text-light: #6C757D;
         }
 
+        body.dark {
+            --light-bg: #121212;
+            --card-bg: #1E1E1E;
+            --text-dark: #F8F9FA;
+            --text-light: #ADB5BD;
+        }
+
         body {
             background-color: var(--light-bg);
             color: var(--text-dark);
@@ -23,6 +29,7 @@
             line-height: 1.6;
             margin: 0;
             padding: 0;
+            transition: background 0.3s, color 0.3s;
         }
 
         .bubble {
@@ -50,27 +57,8 @@
         header {
             padding: 2rem 5%;
             text-align: center;
+            position: relative;
         }
-
-        
-.dark-toggle-btn {
-    position: absolute;
-    top: 1.5rem;
-    right: 2rem;
-    background: var(--card-bg);
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: bold;
-    color: var(--text-dark);
-    transition: all 0.3s;
-}
-.dark-toggle-btn:hover {
-    background-color: var(--accent);
-    color: #fff;
-}
-
 
         .logo {
             font-size: 3rem;
@@ -80,6 +68,26 @@
             background-clip: text;
             color: transparent;
             display: inline-block;
+        }
+
+        .dark-toggle-button {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: var(--card-bg);
+            color: var(--text-dark);
+            border: none;
+            padding: 0.6rem 1rem;
+            font-size: 1.2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+            z-index: 10;
+        }
+
+        body.dark .dark-toggle-button {
+            background: var(--card-bg);
+            color: var(--text-dark);
         }
 
         .hero {
@@ -167,6 +175,10 @@
             text-align: center;
         }
 
+        body.dark .pricing {
+            background: linear-gradient(135deg, #1A1A1A, #2A2A2A);
+        }
+
         .pricing h2 {
             font-size: 2.5rem;
             margin-bottom: 3rem;
@@ -221,147 +233,6 @@
             color: var(--secondary);
         }
 
-        /* Voting Section Styles */
-        .voting {
-            padding: 5rem 10%;
-            text-align: center;
-        }
-        
-        .vote-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-            background: var(--card-bg);
-            border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        .question {
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-            color: var(--primary);
-        }
-
-        .vote-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .vote-btn {
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .yes-btn {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .no-btn {
-            background-color: #F44336;
-            color: white;
-        }
-
-        .vote-btn:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none !important;
-            box-shadow: none !important;
-        }
-
-        .vote-btn:hover:not(:disabled) {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .results {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 2rem;
-        }
-
-        .result-box {
-            text-align: center;
-            padding: 1.5rem;
-            border-radius: 12px;
-            background: rgba(157, 78, 221, 0.1);
-            min-width: 150px;
-        }
-
-        .result-count {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--primary);
-        }
-
-        .result-label {
-            font-size: 1.2rem;
-            color: var(--text-light);
-        }
-
-        .voted-message {
-            color: var(--primary);
-            font-weight: bold;
-            margin-top: 1rem;
-            font-size: 1.1rem;
-        }
-
-        .payment-methods {
-            padding: 5rem 10%;
-            text-align: center;
-        }
-        
-        .payment-card {
-            background: var(--card-bg);
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 3rem;
-            border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-        
-        .payment-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-        
-        .payment-type {
-            background: rgba(157, 78, 221, 0.1);
-            padding: 1.5rem;
-            border-radius: 16px;
-            transition: transform 0.3s;
-        }
-        
-        .payment-type:hover {
-            transform: translateY(-5px);
-            background: rgba(157, 78, 221, 0.15);
-        }
-        
-        .payment-type h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-        
-        .payment-type i {
-            font-size: 1.5rem;
-            margin-right: 10px;
-        }
-        
-        .note {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
         .contact {
             padding: 8rem 10%;
             text-align: center;
@@ -375,8 +246,6 @@
             padding: 4rem;
             position: relative;
             z-index: 1;
-            border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
         .contact h2 {
@@ -408,278 +277,111 @@
             height: 350px;
             animation-delay: 3s;
         }
-
-        @media (max-width: 768px) {
-            .vote-buttons {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .results {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
-    
-body.dark-mode {
-    --light-bg: #121212;
-    --card-bg: #1E1E1E;
-    --text-dark: #F1F1F1;
-    --text-light: #BBBBBB;
-    --primary: #BB86FC;
-    --secondary: #3700B3;
-    --accent: #03DAC6;
-}
-
-
-body, .bubble, .vote-container, .contact-card, .service-item, .stat-item, .price-option, .payment-card {
-    transition: background-color 0.4s ease, color 0.4s ease;
-}
-
-
-.pricing {
-    background: linear-gradient(135deg, #F8F9FA, #E9ECEF);
-}
-
-body.dark-mode .pricing {
-    background: #1E1E1E;
-}
-
-</style>
+    </style>
 </head>
 <body>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
 
     <header>
-        <div class="logo bubble">FreakyGav's<span> Bots</span></div>
-    
-        <button class="dark-toggle-btn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
-
-</header>
+        <div class="logo bubble">FreakyGav's<span> BOTs</span></div>
+        <button id="darkModeToggle" class="dark-toggle-button bubble">🌓</button>
+    </header>
 
     <section class="hero">
-        <h1>Discord Bots That Actually Deliver</h1>
-        <p>I build Python bots with clean code and no nonsense. Your server deserves better than those generic public bots everyone else uses.</p>
+        <h1>Discord Bots That Don't Fucking Suck</h1>
+        <p>I build Python bots with clean code and zero bullshit. Your server deserves better than those trash public bots everyone else uses.</p>
     </section>
 
     <section class="stats">
         <div class="stat-item bubble">
-            <h3>15~</h3>
+            <h3>15+</h3>
             <p>Bots Built</p>
         </div>
         <div class="stat-item bubble">
             <h3>4.9★</h3>
-            <p>Average Rating</p>
+            <p>Average Rating (not bullshitting)</p>
         </div>
         <div class="stat-item bubble">
             <h3>0</h3>
-            <p>Compromises On Quality</p>
+            <p>Fucks Given About "Industry Standards"</p>
         </div>
     </section>
 
     <section class="services">
-        <h2>Why use our services?</h2>
+        <h2>What My Bots Can Do For You</h2>
         <div class="service-grid">
             <div class="service-item bubble">
-                <h3>Moderation that actually works</h3>
-                <p>Auto-punish Spammer detections are in place, able to punish them before you even notice. Organized and consistent warning systems</p>
-                <p><small>With Technical support <span style="font-weight: bold; color: black; font-style: italic;">always</span> on standby.</small></p>
-
-
+                <h3>Moderation That Doesn't Suck</h3>
+                <p>Auto-ban those annoying spammers before you even notice them. Warning systems that actually work. I'll set it up so you don't have to babysit your server.</p>
             </div>
             <div class="service-item bubble">
-                <h3>Our Dedication</h3>
-                <p>We can do anything with our hard working team no matter the size ( size doesnt matter ), throw anything our way and we can make it.</p>
+                <h3>Fun Commands That Aren't Lame</h3>
+                <p>Custom games, meme generators, currency systems - make your server actually fun to hang out in instead of just another text box.</p>
             </div>
             <div class="service-item bubble">
-                <h3>Utilization</h3>
-                <p>Auto-roles, welcome messages, scheduled posts - I'll automate the routine tasks so you can focus on your community.</p>
+                <h3>Automation That Works</h3>
+                <p>Auto-roles, welcome messages, scheduled posts - I'll make the boring stuff happen automatically so you can focus on your community.</p>
             </div>
         </div>
     </section>
 
     <section class="pricing">
-        <h2>Simple Pricing - No Hidden Fees</h2>
+        <h2>Simple Pricing - No Bullshit</h2>
         <div class="pricing-grid">
             <div class="price-option bubble">
                 <h3>Basic</h3>
-                <div class="price">$3</div>
-                <p>1-4 simple commands</p>
+                <div class="price">$5</div>
+                <p>1-2 simple commands</p>
                 <p>Basic responses</p>
-                <p>Starter functionality</p>
+                <p>"Hey bot, say hello" tier</p>
             </div>
             <div class="price-option bubble popular">
-                <h3>Standard</h3>
-                <div class="price">$10</div>
+                <h3>Popular</h3>
+                <div class="price">$15</div>
                 <p>5+ custom commands</p>
                 <p>Auto-moderation</p>
-                <p>Interactive features</p>
+                <p>Fun stuff (memes, games)</p>
             </div>
             <div class="price-option bubble">
-                <h3>Premium</h3>
-                <div class="price">$20+</div>
+                <h3>Custom</h3>
+                <div class="price">$25+</div>
                 <p>Complex bots</p>
                 <p>API connections</p>
-                <p>"How did you do that?!" tier</p>
-                <p><small>Always includes logging utils</p>
+                <p>"How tf did you do that?!" tier</p>
             </div>
-        </div>
-    </section>
-
-    <section class="voting">
-        <div class="vote-container bubble">
-            <h2>Community Feedback</h2>
-            <div class="question" id="question">Should I make a Discord server to sell my products?</div>
-            
-            <div class="vote-buttons">
-                <button class="vote-btn yes-btn" id="yes-btn" onclick="castVote('yes')">
-                    <i class="fas fa-thumbs-up"></i> YES
-                </button>
-                <button class="vote-btn no-btn" id="no-btn" onclick="castVote('no')">
-                    <i class="fas fa-thumbs-down"></i> NO
-                </button>
-            </div>
-            
-            <div id="voted-message" class="voted-message" style="display: none;">
-                Thanks for voting! You can't change your vote.
-            </div>
-            
-            <div class="results">
-                <div class="result-box">
-                    <div class="result-count" id="yes-count">0</div>
-                    <div class="result-label">YES VOTES</div>
-                </div>
-                <div class="result-box">
-                    <div class="result-count" id="no-count">0</div>
-                    <div class="result-label">NO VOTES</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="payment-methods">
-        <div class="payment-card bubble">
-            <h2>Flexible Payment Options</h2>
-            <div class="payment-options">
-                <div class="payment-type">
-                    <h3><i class="fab fa-bitcoin"></i> Crypto</h3>
-                    <p>BTC (Bitcoin)</p>
-                    <p>LTC (Litecoin)</p>
-                </div>
-                <div class="payment-type">
-                    <h3><i class="fab fa-apple"></i> Apple Pay</h3>
-                </div>
-                <div class="payment-type">
-                    <h3><i class="fas fa-money-bill-wave"></i> CashApp</h3>
-                </div>
-                <div class="payment-type">
-                    <h3><i class="fab fa-paypal"></i> PayPal</h3>
-                </div>
-            </div>
-            <p class="note">All payments are secure and confirmed instantly</p>
         </div>
     </section>
 
     <section class="contact">
         <div class="contact-card bubble">
-            <h2>Ready to Get Your <span class="highlight">Awesome Bot</span>?</h2>
-            <p>Contact me on Discord: <span class="highlight">freakygav</span></p>
+            <h2>Ready to Get Your <span class="highlight">Badass Bot</span>?</h2>
+            <p>Hit me up on Discord: <span class="highlight">freakygav</span></p>
             <p>Or email: <span class="highlight">huzzwant@gmail.com</span></p>
             <p>Tell me what you need. I'll reply with:</p>
-            <p>✅ A clear yes/no answer</p>
-            <p>✅ Exact price (upfront)</p>
-            <p>✅ Realistic timeline</p>
+            <p>✅ A yes/no if I can do it</p>
+            <p>✅ Exact price (no surprises)</p>
+            <p>✅ How long it'll take</p>
         </div>
     </section>
 
     <script>
-        let votes = {
-            yes: 0,
-            no: 0
-        };
-        let userVoted = false;
-        let userChoice = null;
+        const toggleBtn = document.getElementById('darkModeToggle');
+        const body = document.body;
 
-        function castVote(choice) {
-            if (userVoted) return;
-            
-            userVoted = true;
-            userChoice = choice;
-            votes[choice]++;
-
-            document.getElementById('yes-btn').disabled = true;
-            document.getElementById('no-btn').disabled = true;
-
-            document.getElementById('voted-message').style.display = 'block';
-            
-            updateResults();
-            saveToStorage();
+        // Apply saved theme
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark');
         }
 
-        function updateResults() {
-            document.getElementById('yes-count').textContent = votes.yes;
-            document.getElementById('no-count').textContent = votes.no;
-        }
-
-        function saveToStorage() {
-            const voteData = {
-                votes: votes,
-                userVoted: userVoted,
-                userChoice: userChoice
-            };
-            localStorage.setItem('freakygav-vote-data', JSON.stringify(voteData));
-        }
-
-        function loadFromStorage() {
-            const savedData = localStorage.getItem('freakygav-vote-data');
-            if (savedData) {
-                const data = JSON.parse(savedData);
-                votes = data.votes || { yes: 0, no: 0 };
-                userVoted = data.userVoted || false;
-                userChoice = data.userChoice || null;
-                
-                if (userVoted) {
-                    document.getElementById('yes-btn').disabled = true;
-                    document.getElementById('no-btn').disabled = true;
-                    document.getElementById('voted-message').style.display = 'block';
-                }
-                
-                updateResults();
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            if (body.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
             }
-        }
-
-        function setQuestion(newQuestion) {
-            document.getElementById('question').textContent = newQuestion;
-            votes = { yes: 0, no: 0 };
-            userVoted = false;
-            userChoice = null;
-            
-            document.getElementById('yes-btn').disabled = false;
-            document.getElementById('no-btn').disabled = false;
-            document.getElementById('voted-message').style.display = 'none';
-            
-            updateResults();
-            saveToStorage();
-        }
-
-        
-        function toggleDarkMode() {
-            document.body.classList.toggle("dark-mode");
-            localStorage.setItem("dark-mode", document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
-        }
-
-        function loadDarkModeSetting() {
-            const darkModeSetting = localStorage.getItem("dark-mode");
-            if (darkModeSetting === "enabled") {
-                document.body.classList.add("dark-mode");
-            }
-        }
-
-        window.onload = () => {
-            loadFromStorage();
-            loadDarkModeSetting();
-        };
+        });
     </script>
 </body>
 </html>
